@@ -4,8 +4,8 @@
 <Button>:
     font_size: 20
     size_hint: 0.3, 0.1
-<MenuScreen>
 
+<MenuScreen>
     ScreenManager:
         id:screen_manager
         StartScreen
@@ -62,7 +62,7 @@
                 hypertext.text = ' '
                 hypertext.text  = 'Real Game Company'
                 app.root.changeScreen(self.text.lower())
-                app.create_text()
+                app.create_text('1')
         Button:
             text: 'Mute'
             size_hint: 0.08, 0.08

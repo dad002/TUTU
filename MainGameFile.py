@@ -5,6 +5,8 @@ from kivy.app import App
 from kivy.core.audio import SoundLoader
 from kivy.uix.screenmanager import ScreenManager, Screen, WipeTransition
 
+#TODO перепишы screen manager
+
 Builder.load_file('main.kv')
 
 class MenuScreen(Screen):
@@ -35,11 +37,26 @@ class MainApp(App):
             self.mute_index = True
 
 
-    def create_text(self):
-        self.arr = ['Первый пробный текст', 'Второй пробный текст', 'Третий пробный текст']
+    def create_text(self, chapter):
         self.pos = 0
+        input = open('Story\Chapter_'+str(chapter), 'r', encoding='UTF-8')
+        self.A=[]
+        while True:
+            tmp = input.readline().rsplit()
+            if tmp == []:
+                break
+            else:
+                self.A.append(tmp)
+
+        for i in range(len(self.A)):
+            self.A[i]=" ".join(list(map(str,self.A[i])))
+
+
+
+
 
     def text_show(self,x):
+        #TODO тута надо будет доделать чтобы после прочтения вызывался следующий экран и чтобы это работало для каждой главы
 
         if self.pos + x == -1 or self.pos + x == 3:
             pass
@@ -47,7 +64,7 @@ class MainApp(App):
             self.pos += x
 
         if self.pos > -1 and self.pos < 3:
-            return self.arr[self.pos]
+            return str(self.A[self.pos])
 
 
 
